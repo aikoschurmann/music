@@ -7,7 +7,7 @@ let timeBar = document.querySelector(".progress-bar-inner");
 let timeBar2 = document.querySelector(".progress-bar-2");
 let play = document.querySelector(".play1");
 let play2 = document.querySelector(".play2");
-let duration = song1.duration;
+let duration;
 let TimeStart = document.querySelector(".time-start");
 let TimeEnd = document.querySelector(".time-end");
 
