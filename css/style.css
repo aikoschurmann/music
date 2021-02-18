@@ -51,7 +51,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 20px;
+  padding-right: 5px;
 }
 
 .player-bar-middle i {
@@ -64,7 +64,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 20px;
 }
 
 .inner-picture {
@@ -201,4 +200,8 @@ body {
 
 .control-bar-artist-exp {
   opacity: 0.5;
+}
+
+.artist {
+  white-space: nowrap;
 }
