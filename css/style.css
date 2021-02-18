@@ -127,7 +127,7 @@ body {
 
   max-height: 350px;
   max-width: 350px;
-  width: 70vw;
+  width: 100vw;
   background-color: white;
   justify-content: center;
   border-radius: 8px;
@@ -190,12 +190,12 @@ body {
 }
 
 .control-bar-title-exp {
-  padding: 5px;
+  font-size: 20px;
 }
 
 .control-bar-artist-exp {
   padding: 5px;
-  padding-bottom: 15px;
+  padding-bottom: 40px;
 }
 
 .control-bar-artist-exp {

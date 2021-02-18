@@ -24,6 +24,10 @@ let next1 = document.querySelector(".next1");
 let innerpicture = document.querySelector(".inner-picture");
 let innerpicture2 = document.querySelector(".control-bar-innerpicture-exp");
 let songIndex = 0;
+let title2 = document.querySelector(".control-bar-title-exp");
+let artist2 = document.querySelector(".control-bar-artist-exp");
+let next2 = document.querySelector(".next2");
+let prev2 = document.querySelector(".prev2");
 let db = [
   {
     id: "bM7SZ5SBzyY",
@@ -51,7 +55,8 @@ timeBar2.addEventListener("input", updateTimebar);
 song1.addEventListener("loadeddata", loadeddata);
 window.onresize = displayUpdate;
 next1.addEventListener("click", nextSong);
-console.log(next1);
+next2.addEventListener("click", nextSong);
+prev2.addEventListener("click", prevSong);
 
 function expandsection() {
   controlBar.style.height = "100%";
@@ -106,6 +111,20 @@ function loadeddata() {
   play.addEventListener("click", togglepause);
   play2.addEventListener("click", togglepause);
 }
+function prevSong() {
+  player.destroy();
+  songIndex--;
+  console.log("hey");
+
+  player = new YT.Player("player", {
+    height: "0",
+    width: "0",
+    videoId: db[songIndex].id,
+    events: {
+      onReady: onPlayerReady,
+    },
+  });
+}
 function nextSong() {
   player.destroy();
   songIndex++;
@@ -124,14 +143,9 @@ function displayUpdate() {
   let maxCharacters = Math.floor((screen.width - 165) / 7 - 4);
   let maxCharacters2 = Math.floor((screen.width - 165) / 7 - 4);
 
-  console.log(player.showVideoInfo());
-
-  console.log(db[songIndex]);
   artistValue = db[songIndex].artist.replace(/&amp;/g, "&");
   titleValue = db[songIndex].title.replace(/&amp;/g, "&");
 
-  console.log(titleValue.length);
-  console.log(maxCharacters);
   artistValue.length > maxCharacters
     ? (artist.innerHTML = artistValue.slice(0, maxCharacters) + "...")
     : (artist.innerHTML = artistValue.slice(0, maxCharacters));
@@ -140,6 +154,8 @@ function displayUpdate() {
     ? (title.innerHTML = titleValue.slice(0, maxCharacters) + "...")
     : (title.innerHTML = titleValue.slice(0, maxCharacters));
 
+  title2.innerHTML = db[songIndex].title.replace(/&amp;/g, "&");
+  artist2.innerHTML = db[songIndex].artist.replace(/&amp;/g, "&");
   innerpicture.style.backgroundImage =
     " url(http://img.youtube.com/vi/" + db[songIndex].id + "/1.jpg)";
   innerpicture2.style.backgroundImage =
@@ -163,7 +179,7 @@ function onPlayerReady(event) {
     if (videotime !== oldTime) {
     }
   }
-  timeupdater = setInterval(updateTime, 250);
+  timeupdater = setInterval(updateTime, 1);
 }
 
 function onYouTubeIframeAPIReady() {
@@ -176,5 +192,3 @@ function onYouTubeIframeAPIReady() {
     },
   });
 }
-
-console.log(db);
