@@ -168,6 +168,7 @@ function updateInfo() {
 function onPlayerReady(event) {
   duration = player.getDuration();
   player.seekTo(1);
+
   updateInfo();
 
   function updateTime() {
