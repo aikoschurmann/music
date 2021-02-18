@@ -194,7 +194,8 @@ body {
 }
 
 .control-bar-controls-bottom-exp {
-  width: 40vw;
+  width: 60vw;
+  max-width: 250px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -221,7 +222,7 @@ body {
 
 .control-bar-artist-exp {
   padding: 5px;
-  padding-bottom: 40px;
+  padding-bottom: 10vh;
 }
 
 .control-bar-artist-exp {
@@ -244,8 +245,66 @@ body {
 }
 
 .control-bar-innerpicture-exp {
-  width: 80vw;
   background: center;
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.collum1 {
+  width: 100vw;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.inner-collum1 {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  display: flex;
+}
+
+.start-song {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  text-align: left;
+}
+.start-song-inner {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+  background-image: url("https://i1.sndcdn.com/artworks-000174691373-1s4mj0-t500x500.jpg");
+  background-size: 100%;
+}
+.playlist1 {
+  background-color: gray;
+  height: 100%;
+  width: 50%;
+}
+.song1 {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border: black 1px solid;
+  display: inline-block;
+}
+.song2 {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  display: inline-block;
+}
+.song3 {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border: black 1px solid;
+  display: inline-block;
 }

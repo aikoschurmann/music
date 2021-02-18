@@ -1,14 +1,17 @@
 [ {
     "id": "bM7SZ5SBzyY",
     "title" : "Fade",
-    "artist" : "Alan Walker"
+    "artist" : "Alan Walker",
+    "url" : "https://img.discogs.com/VNdJ0BxdiY4Y_OpNC5hCYEAyU98=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-9334981-1478794460-4031.jpeg.jpg"
 },{
     "id": "K4DyBUG242c",
     "title" : "On & On",
-    "artist" : "Cartoon"
+    "artist" : "Cartoon",
+    "url"  : "https://i1.sndcdn.com/artworks-000174691373-1s4mj0-t500x500.jpg"
 },{
     "id": "AOeY-nDp7hI",
     "title" : "Spectre",
-    "artist" : "Alan Walker"
+    "artist" : "Alan Walker",
+    "url" : "https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg"
 }
 ]

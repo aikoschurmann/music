@@ -28,24 +28,52 @@ let title2 = document.querySelector(".control-bar-title-exp");
 let artist2 = document.querySelector(".control-bar-artist-exp");
 let next2 = document.querySelector(".next2");
 let prev2 = document.querySelector(".prev2");
+let test = document.querySelector(".test");
 let db = [
   {
     id: "bM7SZ5SBzyY",
     title: "Fade",
     artist: "Alan Walker",
+    url: "https://i1.sndcdn.com/artworks-000152209996-zt335k-t500x500.jpg",
+    color: "#101010",
   },
   {
     id: "K4DyBUG242c",
     title: "On & On",
     artist: "Cartoon",
+    url: "https://i1.sndcdn.com/artworks-000174691373-1s4mj0-t500x500.jpg",
+    color: "#2e2833",
   },
   {
     id: "AOeY-nDp7hI",
     title: "Spectre",
     artist: "Alan Walker",
+    url: "https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg",
+    color: "#526975",
+  },
+  {
+    id: "J2X5mJ3HDYE",
+    title: "DEAF KEV",
+    artist: "Invincible",
+    url: "https://i1.sndcdn.com/artworks-000196691418-31o3an-t500x500.jpg",
+    color: "#526975",
+  },
+  {
+    id: "3nQNiWdeH2Q",
+    title: "Janji",
+    artist: "Heroes Tonight",
+    url: "https://i1.sndcdn.com/artworks-000119783441-ycwh33-t500x500.jpg",
+    color: "#526975",
+  },
+  {
+    id: "Hn4sfC2PbhI",
+    title: "Sub Urban",
+    artist: "Cradles",
+    url:
+      "https://i.pinimg.com/originals/b2/5b/5f/b25b5f585ab8e5850f0ce0aa21efd70a.jpg",
+    color: "#526975",
   },
 ];
-
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -112,32 +140,22 @@ function loadeddata() {
   play2.addEventListener("click", togglepause);
 }
 function prevSong() {
-  player.destroy();
-  songIndex--;
-  console.log("hey");
-
-  player = new YT.Player("player", {
-    height: "0",
-    width: "0",
-    videoId: db[songIndex].id,
-    events: {
-      onReady: onPlayerReady,
-    },
-  });
+  if (songIndex - 1 < 0) {
+    songIndex = db.length - 1;
+  } else {
+    songIndex--;
+  }
+  player.loadVideoById(db[songIndex].id);
+  updateInfo();
 }
 function nextSong() {
-  player.destroy();
-  songIndex++;
-  console.log("hey");
-
-  player = new YT.Player("player", {
-    height: "0",
-    width: "0",
-    videoId: db[songIndex].id,
-    events: {
-      onReady: onPlayerReady,
-    },
-  });
+  if (songIndex + 1 == db.length) {
+    songIndex = 0;
+  } else {
+    songIndex++;
+  }
+  player.loadVideoById(db[songIndex].id);
+  updateInfo();
 }
 function displayUpdate() {
   let maxCharacters = Math.floor((screen.width - 165) / 7 - 4);
@@ -156,29 +174,37 @@ function displayUpdate() {
 
   title2.innerHTML = db[songIndex].title.replace(/&amp;/g, "&");
   artist2.innerHTML = db[songIndex].artist.replace(/&amp;/g, "&");
-  innerpicture.style.backgroundImage =
-    " url(http://img.youtube.com/vi/" + db[songIndex].id + "/1.jpg)";
-  innerpicture2.style.backgroundImage =
-    " url(http://img.youtube.com/vi/" + db[songIndex].id + "/mqdefault.jpg)";
+  innerpicture.style.backgroundImage = " url(" + db[songIndex].url + ")";
+  innerpicture2.style.backgroundImage = " url(" + db[songIndex].url + ")";
+
+  controlBarExpanded.style.backgroundColor = db[songIndex].color;
 }
 
 function updateInfo() {
+  timeBar2.value = (videotime / duration) * 1000;
   displayUpdate();
 }
 function onPlayerReady(event) {
+  player.addEventListener("onStateChange", function (state) {
+    if (state.data === 0) {
+      console.log("end");
+      nextSong();
+    }
+  });
   duration = player.getDuration();
   player.seekTo(1);
 
   updateInfo();
 
   function updateTime() {
-    loadeddata();
+    if (player.getPlayerState() === 1) {
+      loadeddata();
+    }
+
+    duration = player.getDuration();
     var oldTime = videotime;
     if (player && player.getCurrentTime) {
       videotime = player.getCurrentTime();
-      if (videotime >= duration - 1) {
-        nextSong();
-      }
     }
     if (videotime !== oldTime) {
     }
@@ -186,7 +212,9 @@ function onPlayerReady(event) {
   timeupdater = setInterval(updateTime, 1);
 }
 
-function onYouTubeIframeAPIReady() {
+function onYouTubeIframeAPIReady() {}
+
+function start() {
   player = new YT.Player("player", {
     height: "0",
     width: "0",
@@ -196,3 +224,5 @@ function onYouTubeIframeAPIReady() {
     },
   });
 }
+
+test.addEventListener("click", start);
