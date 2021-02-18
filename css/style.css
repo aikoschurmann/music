@@ -205,3 +205,20 @@ body {
 .artist {
   white-space: nowrap;
 }
+
+.title {
+  white-space: nowrap;
+}
+
+.inner-picture {
+  background: center;
+  background-size: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+.control-bar-innerpicture-exp {
+  background: center;
+  background-size: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}

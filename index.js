@@ -11,14 +11,37 @@ let duration;
 let TimeStart = document.querySelector(".time-start");
 let TimeEnd = document.querySelector(".time-end");
 let artist = document.querySelector(".artist");
+let title = document.querySelector(".title");
 let artistValue = artist.innerHTML.replace(/&amp;/g, "&");
+let titleValue = title.innerHTML.replace(/&amp;/g, "&");
 let song1 = new Audio("./song1.mp3");
 let player;
 let videotime;
 let tag = document.createElement("script");
 let firstScriptTag = document.getElementsByTagName("script")[0];
 let id = "M7lc1UVf-VE";
-let title = document.querySelector(".title");
+let next1 = document.querySelector(".next1");
+let innerpicture = document.querySelector(".inner-picture");
+let innerpicture2 = document.querySelector(".control-bar-innerpicture-exp");
+let songIndex = 0;
+let db = [
+  {
+    id: "bM7SZ5SBzyY",
+    title: "Fade",
+    artist: "Alan Walker",
+  },
+  {
+    id: "K4DyBUG242c",
+    title: "On & On",
+    artist: "Cartoon",
+  },
+  {
+    id: "AOeY-nDp7hI",
+    title: "Spectre",
+    artist: "Alan Walker",
+  },
+];
+
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -27,6 +50,8 @@ collapse.addEventListener("click", collapsesection);
 timeBar2.addEventListener("input", updateTimebar);
 song1.addEventListener("loadeddata", loadeddata);
 window.onresize = displayUpdate;
+next1.addEventListener("click", nextSong);
+console.log(next1);
 
 function expandsection() {
   controlBar.style.height = "100%";
@@ -52,17 +77,7 @@ function togglepause() {
     player.pauseVideo();
   }
 }
-function togglepause2() {
-  if (player.getPlayerState() === 5) {
-    player.playVideo();
-    play2.classList = "fas fa-pause play2";
-    play.classList = "fas fa-pause play";
-  } else {
-    player.stopVideo();
-    play2.classList = "fas fa-play play2";
-    play.classList = "fas fa-play play";
-  }
-}
+
 function updateTimebar() {
   player.seekTo((timeBar2.value / 1000) * duration);
 }
@@ -89,25 +104,55 @@ function loadeddata() {
   timeBar2.value = (videotime / duration) * 1000;
 
   play.addEventListener("click", togglepause);
-  play2.addEventListener("click", togglepause2);
+  play2.addEventListener("click", togglepause);
 }
+function nextSong() {
+  player.destroy();
+  songIndex++;
+  console.log("hey");
 
+  player = new YT.Player("player", {
+    height: "0",
+    width: "0",
+    videoId: db[songIndex].id,
+    events: {
+      onReady: onPlayerReady,
+    },
+  });
+}
 function displayUpdate() {
   let maxCharacters = Math.floor((screen.width - 165) / 7 - 4);
+  let maxCharacters2 = Math.floor((screen.width - 165) / 7 - 4);
 
+  console.log(player.showVideoInfo());
+
+  console.log(db[songIndex]);
+  artistValue = db[songIndex].artist.replace(/&amp;/g, "&");
+  titleValue = db[songIndex].title.replace(/&amp;/g, "&");
+
+  console.log(titleValue.length);
+  console.log(maxCharacters);
   artistValue.length > maxCharacters
     ? (artist.innerHTML = artistValue.slice(0, maxCharacters) + "...")
     : (artist.innerHTML = artistValue.slice(0, maxCharacters));
+
+  titleValue.length > maxCharacters2
+    ? (title.innerHTML = titleValue.slice(0, maxCharacters) + "...")
+    : (title.innerHTML = titleValue.slice(0, maxCharacters));
+
+  innerpicture.style.backgroundImage =
+    " url(http://img.youtube.com/vi/" + db[songIndex].id + "/1.jpg)";
+  innerpicture2.style.backgroundImage =
+    " url(http://img.youtube.com/vi/" + db[songIndex].id + "/mqdefault.jpg)";
 }
 
 function updateInfo() {
-  artist.innerHTML = player.getVideoData().author;
-  title.innerHTML = player.getVideoData().title;
+  displayUpdate();
 }
 function onPlayerReady(event) {
   duration = player.getDuration();
-  player.playVideo();
-  player.seekTo(0);
+  player.seekTo(1);
+  updateInfo();
 
   function updateTime() {
     loadeddata();
@@ -125,24 +170,11 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player("player", {
     height: "0",
     width: "0",
-    videoId: "j59qQ7YWLxw",
+    videoId: db[songIndex].id,
     events: {
       onReady: onPlayerReady,
     },
   });
 }
-displayUpdate();
 
-setInterval(() => {
-  id = "xd2bKrDzMTg";
-  player.destroy();
-
-  player = new YT.Player("player", {
-    height: "0",
-    width: "0",
-    videoId: id,
-    events: {
-      onReady: onPlayerReady,
-    },
-  });
-}, 1000000000);
+console.log(db);
