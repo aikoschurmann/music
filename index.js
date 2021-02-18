@@ -175,6 +175,9 @@ function onPlayerReady(event) {
     var oldTime = videotime;
     if (player && player.getCurrentTime) {
       videotime = player.getCurrentTime();
+      if (videotime >= duration - 1) {
+        nextSong();
+      }
     }
     if (videotime !== oldTime) {
     }

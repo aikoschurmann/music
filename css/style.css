@@ -5,8 +5,16 @@
   outline: none;
 }
 body {
-  background-color: black;
   font-family: sans-serif;
+  background-color: black;
+}
+
+.control-bar {
+  background-color: #101010;
+}
+
+.control-bar-expanded {
+  background-color: #13131b;
 }
 
 .progress-bar {
@@ -127,7 +135,7 @@ body {
 
   max-height: 350px;
   max-width: 350px;
-  width: 100vw;
+  width: 70vw;
   background-color: white;
   justify-content: center;
   border-radius: 8px;
@@ -185,6 +193,24 @@ body {
   cursor: pointer;
 }
 
+.control-bar-controls-bottom-exp {
+  width: 40vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play2c {
+  background-color: rgba(360, 360, 360, 0.15);
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
 .fa-chevron-down {
   cursor: pointer;
 }
@@ -216,9 +242,10 @@ body {
   height: 100%;
   background-repeat: no-repeat;
 }
+
 .control-bar-innerpicture-exp {
+  width: 80vw;
   background: center;
   background-size: 100%;
-  height: 100%;
   background-repeat: no-repeat;
 }
