@@ -31,6 +31,7 @@ let prev2 = document.querySelector(".prev2");
 let startSong = document.querySelector(".playc");
 let playlistCover = document.querySelector(".start-song-inner");
 let main = document.querySelector(".main");
+let index;
 
 let db = [
   {
@@ -158,11 +159,7 @@ function togglepause() {
   if (player.getPlayerState() != 1) {
     //song1.play();
     player.playVideo();
-    play.classList = "fas fa-pause play";
-    play2.classList = "fas fa-pause play2";
   } else {
-    play.classList = "fas fa-play play";
-    play2.classList = "fas fa-play play2";
     player.pauseVideo();
   }
 }
@@ -195,6 +192,9 @@ function loadeddata() {
   play2.addEventListener("click", togglepause);
 }
 function prevSong() {
+  let hey = document.querySelector("." + "i" + playlistIndex + "s" + songIndex);
+  hey.classList =
+    "fas fa-play play-playlist " + "i" + playlistIndex + "s" + songIndex;
   if (songIndex - 1 < 0) {
     songIndex = db[playlistIndex].songs.length - 1;
   } else {
@@ -204,6 +204,9 @@ function prevSong() {
   updateInfo();
 }
 function nextSong() {
+  let hey = document.querySelector("." + "i" + playlistIndex + "s" + songIndex);
+  hey.classList =
+    "fas fa-play play-playlist " + "i" + playlistIndex + "s" + songIndex;
   if (songIndex + 1 == db[playlistIndex].songs.length) {
     songIndex = 0;
   } else {
@@ -256,6 +259,27 @@ function onPlayerReady(event) {
       console.log("end");
       nextSong();
     }
+    if (state.data === 1) {
+      console.log("play");
+      play.classList = "fas fa-pause play";
+      play2.classList = "fas fa-pause play2";
+      let hey = document.querySelector(
+        "." + "i" + playlistIndex + "s" + songIndex
+      );
+      hey.classList =
+        "fas fa-pause play-playlist " + "i" + playlistIndex + "s" + songIndex;
+    }
+    if (state.data === 2) {
+      console.log("pause");
+      play.classList = "fas fa-play play";
+      play2.classList = "fas fa-play play2";
+
+      let hey = document.querySelector(
+        "." + "i" + playlistIndex + "s" + songIndex
+      );
+      hey.classList =
+        "fas fa-play play-playlist " + "i" + playlistIndex + "s" + songIndex;
+    }
   });
   duration = player.getDuration();
   player.playVideo();
@@ -297,7 +321,7 @@ function preload() {
     console.log("hey");
     let songAmount = db[i].songs.length;
     let main = document.querySelector(".main");
-    let index = i;
+    index = i;
     let collum = document.createElement("div");
     let innercollum = document.createElement("div");
     let startSong = document.createElement("div");
@@ -337,7 +361,8 @@ function preload() {
 
       playlistlist1Top.classList = "playlist1-cont-top";
       listInfo.classList = "list-info";
-      playPlaylist1.classList = "fas fa-play play-playlist " + index + b;
+      playPlaylist1.classList =
+        "fas fa-play play-playlist " + "i" + index + "s" + b;
 
       playlistlist1Top.appendChild(listInfo);
       playlistlist1Top.appendChild(playPlaylist1);
@@ -358,10 +383,27 @@ function preload() {
             },
           });
         } else {
-          songIndex = event.target.dataset.song;
-          playlistIndex = event.target.dataset.playlist;
-          player.loadVideoById(db[playlistIndex].songs[songIndex].id);
-          updateInfo();
+          if (
+            songIndex == event.target.dataset.song &&
+            playlistIndex == event.target.dataset.playlist
+          ) {
+            togglepause();
+          } else {
+            let hey = document.querySelector(
+              "." + "i" + playlistIndex + "s" + songIndex
+            );
+            hey.classList =
+              "fas fa-play play-playlist " +
+              "i" +
+              playlistIndex +
+              "s" +
+              songIndex;
+
+            songIndex = event.target.dataset.song;
+            playlistIndex = event.target.dataset.playlist;
+            player.loadVideoById(db[playlistIndex].songs[songIndex].id);
+            updateInfo();
+          }
         }
       }
 
