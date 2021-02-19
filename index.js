@@ -30,51 +30,59 @@ let next2 = document.querySelector(".next2");
 let prev2 = document.querySelector(".prev2");
 let startSong = document.querySelector(".playc");
 let playlistCover = document.querySelector(".start-song-inner");
+let main = document.querySelector(".main");
+
 let db = [
   {
-    id: "bM7SZ5SBzyY",
-    title: "Fade",
-    artist: "Alan Walker",
-    url: "https://i1.sndcdn.com/artworks-000152209996-zt335k-t500x500.jpg",
-    color: "#101010",
-  },
-  {
-    id: "K4DyBUG242c",
-    title: "On & On",
-    artist: "Cartoon",
-    url: "https://i1.sndcdn.com/artworks-000174691373-1s4mj0-t500x500.jpg",
-    color: "#2e2833",
-  },
-  {
-    id: "AOeY-nDp7hI",
-    title: "Spectre",
-    artist: "Alan Walker",
-    url: "https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg",
-    color: "#526975",
-  },
-  {
-    id: "J2X5mJ3HDYE",
-    title: "DEAF KEV",
-    artist: "Invincible",
-    url: "https://i1.sndcdn.com/artworks-000196691418-31o3an-t500x500.jpg",
-    color: "#0e313f",
-  },
-  {
-    id: "3nQNiWdeH2Q",
-    title: "Janji",
-    artist: "Heroes Tonight",
-    url: "https://i1.sndcdn.com/artworks-000119783441-ycwh33-t500x500.jpg",
-    color: "#2d2541",
-  },
-  {
-    id: "Hn4sfC2PbhI",
-    title: "Sub Urban",
-    artist: "Cradles",
-    url:
-      "https://i.pinimg.com/originals/b2/5b/5f/b25b5f585ab8e5850f0ce0aa21efd70a.jpg",
-    color: "#526975",
+    songs: [
+      {
+        id: "bM7SZ5SBzyY",
+        title: "Fade",
+        artist: "Alan Walker",
+        url: "https://i1.sndcdn.com/artworks-000152209996-zt335k-t500x500.jpg",
+        color: "#101010",
+      },
+      {
+        id: "K4DyBUG242c",
+        title: "On & On",
+        artist: "Cartoon",
+        url: "https://i1.sndcdn.com/artworks-000174691373-1s4mj0-t500x500.jpg",
+        color: "#2e2833",
+      },
+      {
+        id: "AOeY-nDp7hI",
+        title: "Spectre",
+        artist: "Alan Walker",
+        url: "https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg",
+        color: "#526975",
+      },
+      {
+        id: "J2X5mJ3HDYE",
+        title: "DEAF KEV",
+        artist: "Invincible",
+        url: "https://i1.sndcdn.com/artworks-000196691418-31o3an-t500x500.jpg",
+        color: "#0e313f",
+      },
+      {
+        id: "3nQNiWdeH2Q",
+        title: "Janji",
+        artist: "Heroes Tonight",
+        url: "https://i1.sndcdn.com/artworks-000119783441-ycwh33-t500x500.jpg",
+        color: "#2d2541",
+      },
+      {
+        id: "Hn4sfC2PbhI",
+        title: "Sub Urban",
+        artist: "Cradles",
+        url:
+          "https://i.pinimg.com/originals/b2/5b/5f/b25b5f585ab8e5850f0ce0aa21efd70a.jpg",
+        color: "#526975",
+      },
+    ],
   },
 ];
+let playlistIndex = db.length - 1;
+let playlists = document.querySelectorAll(".playlist1-list");
 tag.src = "https://www.youtube.com/iframe_api";
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -111,7 +119,6 @@ function togglepause() {
     player.pauseVideo();
   }
 }
-
 function updateTimebar() {
   player.seekTo((timeBar2.value / 1000) * duration);
 }
@@ -142,28 +149,31 @@ function loadeddata() {
 }
 function prevSong() {
   if (songIndex - 1 < 0) {
-    songIndex = db.length - 1;
+    songIndex = db[playlistIndex].songs.length - 1;
   } else {
     songIndex--;
   }
-  player.loadVideoById(db[songIndex].id);
+  player.loadVideoById(db[playlistIndex].songs[songIndex].id);
   updateInfo();
 }
 function nextSong() {
-  if (songIndex + 1 == db.length) {
+  if (songIndex + 1 == db[playlistIndex].songs.length) {
     songIndex = 0;
   } else {
     songIndex++;
   }
-  player.loadVideoById(db[songIndex].id);
+  player.loadVideoById(db[playlistIndex].songs[songIndex].id);
   updateInfo();
 }
 function displayUpdate() {
   let maxCharacters = Math.floor((screen.width - 165) / 7 - 4);
   let maxCharacters2 = Math.floor((screen.width - 165) / 7 - 4);
 
-  artistValue = db[songIndex].artist.replace(/&amp;/g, "&");
-  titleValue = db[songIndex].title.replace(/&amp;/g, "&");
+  artistValue = db[playlistIndex].songs[songIndex].artist.replace(
+    /&amp;/g,
+    "&"
+  );
+  titleValue = db[playlistIndex].songs[songIndex].title.replace(/&amp;/g, "&");
 
   artistValue.length > maxCharacters
     ? (artist.innerHTML = artistValue.slice(0, maxCharacters) + "...")
@@ -173,15 +183,22 @@ function displayUpdate() {
     ? (title.innerHTML = titleValue.slice(0, maxCharacters) + "...")
     : (title.innerHTML = titleValue.slice(0, maxCharacters));
 
-  title2.innerHTML = db[songIndex].title.replace(/&amp;/g, "&");
-  artist2.innerHTML = db[songIndex].artist.replace(/&amp;/g, "&");
-  innerpicture.style.backgroundImage = " url(" + db[songIndex].url + ")";
-  innerpicture2.style.backgroundImage = " url(" + db[songIndex].url + ")";
-  playlistCover.style.backgroundImage = " url(" + db[songIndex].url + ")";
+  title2.innerHTML = db[playlistIndex].songs[songIndex].title.replace(
+    /&amp;/g,
+    "&"
+  );
+  artist2.innerHTML = db[playlistIndex].songs[songIndex].artist.replace(
+    /&amp;/g,
+    "&"
+  );
+  innerpicture.style.backgroundImage =
+    " url(" + db[playlistIndex].songs[songIndex].url + ")";
+  innerpicture2.style.backgroundImage =
+    " url(" + db[playlistIndex].songs[songIndex].url + ")";
 
-  controlBarExpanded.style.backgroundColor = db[songIndex].color;
+  controlBarExpanded.style.backgroundColor =
+    db[playlistIndex].songs[songIndex].color;
 }
-
 function updateInfo() {
   timeBar2.value = (videotime / duration) * 1000;
   displayUpdate();
@@ -194,8 +211,7 @@ function onPlayerReady(event) {
     }
   });
   duration = player.getDuration();
-  player.seekTo(1);
-
+  player.playVideo();
   updateInfo();
 
   function updateTime() {
@@ -213,18 +229,102 @@ function onPlayerReady(event) {
   }
   timeupdater = setInterval(updateTime, 1);
 }
-
 function onYouTubeIframeAPIReady() {}
 
 function start() {
+  console.log(db[playlistIndex].songs[0].url);
   player = new YT.Player("player", {
     height: "0",
     width: "0",
-    videoId: db[songIndex].id,
+    videoId: db[playlistIndex].songs[0].id,
     events: {
       onReady: onPlayerReady,
     },
   });
 }
 
-startSong.addEventListener("click", start);
+function preload() {
+  let playlistAmount = db.length;
+
+  for (i = 0; i < playlistAmount; i++) {
+    console.log("hey");
+    let songAmount = db[i].songs.length;
+    let main = document.querySelector(".main");
+    let index = i;
+    let collum = document.createElement("div");
+    let innercollum = document.createElement("div");
+    let startSong = document.createElement("div");
+    let startSongInner = document.createElement("div");
+    let playPlaylist = document.createElement("div");
+    let playlist = document.createElement("div");
+    let playlistList = document.createElement("div");
+
+    collum.classList = "collum1";
+    innercollum.classList = "inner-collum1";
+    startSong.classList = "start-song";
+    startSongInner.classList = "start-song-inner";
+    playPlaylist.classList = "fas fa-play playc";
+    playlist.classList = "playlist1";
+    playlistList.classList = "playlist-list";
+    let playlistlist1 = document.createElement("div");
+
+    playlistlist1.classList = "playlist1-list";
+
+    startSongInner.style.backgroundImage =
+      "url(" + db[index].songs[0].url + ")";
+
+    playlistList.appendChild(playlistlist1);
+    playlist.appendChild(playlistList);
+    startSongInner.appendChild(playPlaylist);
+    startSong.appendChild(startSongInner);
+    innercollum.appendChild(startSong);
+    innercollum.appendChild(playlist);
+    collum.appendChild(innercollum);
+    main.appendChild(collum);
+    main.appendChild(collum);
+
+    for (b = 0; b < songAmount; b++) {
+      let playlistlist1Top = document.createElement("div");
+      let listInfo = document.createElement("div");
+      let playPlaylist1 = document.createElement("div");
+
+      playlistlist1Top.classList = "playlist1-cont-top";
+      listInfo.classList = "list-info";
+      playPlaylist1.classList = "fas fa-play play-playlist " + index + b;
+
+      playlistlist1Top.appendChild(listInfo);
+      playlistlist1Top.appendChild(playPlaylist1);
+
+      listInfo.innerHTML =
+        db[index].songs[b].title + "-" + db[index].songs[b].artist;
+
+      function clickHandler(event) {
+        if (player === undefined) {
+          songIndex = event.target.dataset.song;
+          playlistIndex = event.target.dataset.playlist;
+          player = new YT.Player("player", {
+            height: "0",
+            width: "0",
+            videoId: db[playlistIndex].songs[songIndex].id,
+            events: {
+              onReady: onPlayerReady,
+            },
+          });
+        } else {
+          songIndex = event.target.dataset.song;
+          playlistIndex = event.target.dataset.playlist;
+          player.loadVideoById(db[playlistIndex].songs[songIndex].id);
+          updateInfo();
+        }
+      }
+
+      playPlaylist1.addEventListener("click", clickHandler);
+
+      playPlaylist1.dataset.playlist = index;
+      playPlaylist1.dataset.song = b;
+
+      playlistlist1.appendChild(playlistlist1Top);
+    }
+  }
+}
+preload();

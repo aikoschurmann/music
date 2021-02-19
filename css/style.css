@@ -7,7 +7,7 @@
 body {
   font-family: sans-serif;
   background-color: black;
-  overflow-x: hidden;
+
   width: 100vw;
 }
 
@@ -360,10 +360,11 @@ html {
 .playlist1-cont-top {
   display: flex;
   justify-content: space-between;
+  padding-top: 15px;
 }
 
 .play-playlist {
-  padding-right: 20px;
+  margin-right: 20px;
   color: rgba(360, 360, 360, 0.5);
 }
 .play-playlist:hover {

@@ -15,3 +15,78 @@
     "url" : "https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg"
 }
 ]
+function preload() {
+    let playlistAmount = db.length;
+  
+    console.log(playlistAmount);
+  
+    for (i = 0; i < playlistAmount; i++) {
+      console.log("hey");
+      let songAmount = db[i].songs.length;
+      let main = document.querySelector(".main");
+      let index = i;
+      let collum = document.createElement("div");
+      let innercollum = document.createElement("div");
+      let startSong = document.createElement("div");
+      let startSongInner = document.createElement("div");
+      let playPlaylist = document.createElement("div");
+      let playlist = document.createElement("div");
+      let playlistList = document.createElement("div");
+  
+      collum.classList = "collum1";
+      innercollum.classList = "inner-collum1";
+      startSong.classList = "start-song";
+      startSongInner.classList = "start-song-inner";
+      playPlaylist.classList = "fas fa-play playc";
+      playlist.classList = "playlist1";
+      playlistList.classList = "playlist-list";
+      let playlistlist1 = document.createElement("div");
+  
+      playlistlist1.classList = "playlist1-list";
+  
+      startSongInner.style.backgroundImage =
+        "url(" + db[index].songs[0].url + ")";
+  
+      playlistList.appendChild(playlistlist1);
+      playlist.appendChild(playlistList);
+      startSongInner.appendChild(playPlaylist);
+      startSong.appendChild(startSongInner);
+      innercollum.appendChild(startSong);
+      innercollum.appendChild(playlist);
+      collum.appendChild(innercollum);
+      main.appendChild(collum);
+      main.appendChild(collum);
+  
+      for (b = 0; b < songAmount; b++) {
+        let playlistlist1Top = document.createElement("div");
+        let listInfo = document.createElement("div");
+        let playPlaylist1 = document.createElement("div");
+  
+        playlistlist1Top.classList = "playlist1-cont-top";
+        listInfo.classList = "list-info";
+        playPlaylist1.classList = "fas fa-play play-playlist";
+  
+        playlistlist1Top.appendChild(listInfo);
+        playlistlist1Top.appendChild(playPlaylist1);
+  
+        listInfo.innerHTML =
+          db[index].songs[b].title + "-" + db[index].songs[b].artist;
+  
+        function clickHandler(event) {
+          console.log(
+            event.target.dataset.playlist + " " + event.target.dataset.song
+          );
+          console.log(player);
+        }
+  
+        playPlaylist1.addEventListener("click", clickHandler);
+  
+        playPlaylist1.dataset.playlist = index;
+        playPlaylist1.dataset.song = b;
+  
+        playlistlist1.appendChild(playlistlist1Top);
+      }
+  
+      console.log(collum);
+    }
+  }
