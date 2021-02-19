@@ -147,16 +147,12 @@ function expandsection() {
   controlBarCollapsed.style.display = "none";
   controlBarExpanded.style.display = "inline-block";
 
-  main.style.display = "none";
-
   displaytime();
 }
 function collapsesection() {
   controlBar.style.height = "";
   controlBarCollapsed.style.display = "inline-block";
   controlBarExpanded.style.display = "none";
-
-  main.style.display = "inline-block";
 }
 function togglepause() {
   if (player.getPlayerState() != 1) {

@@ -9,6 +9,7 @@ body {
   background-color: black;
 
   width: 100vw;
+  overflow: none;
 }
 
 html {
@@ -360,11 +361,11 @@ html {
 .playlist1-cont-top {
   display: flex;
   justify-content: space-between;
-  padding-top: 15px;
+  padding-top: 20px;
 }
 
 .play-playlist {
-  margin-right: 20px;
+  padding-right: 20px;
   color: rgba(360, 360, 360, 0.5);
 }
 .play-playlist:hover {
