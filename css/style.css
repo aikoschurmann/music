@@ -277,8 +277,8 @@ body {
   text-align: left;
 }
 .start-song-inner {
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   border-radius: 5px;
   background-image: url("https://i1.sndcdn.com/artworks-000152209996-zt335k-t500x500.jpg");
   background-size: 100%;
@@ -421,17 +421,10 @@ iframe {
     padding: 50px 0px;
     padding-top: 20px;
   }
-  .playlist1-list {
-    width: 70vw;
-  }
-  .start-song-inner {
-    width: 160px;
-    height: 160px;
-  }
 }
 
 main {
-  height: 100%;
+  height: 92vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
