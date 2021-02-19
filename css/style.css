@@ -376,7 +376,6 @@ html {
 }
 
 .playlist1-list {
-  overflow-y: scroll;
   height: 300px;
   width: 300px;
   margin-bottom: 20px;
@@ -413,8 +412,6 @@ iframe {
 }
 main {
   height: calc(100vh - 66px);
-
-  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 600px) {
