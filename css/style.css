@@ -413,7 +413,7 @@ iframe {
 }
 main {
   height: calc(100vh - 66px);
-  overflow-y: scroll;
+
   overflow-x: hidden;
 }
 

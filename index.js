@@ -80,6 +80,53 @@ let db = [
       },
     ],
   },
+  {
+    songs: [
+      {
+        id: "bM7SZ5SBzyY",
+        title: "Fade",
+        artist: "Alan Walker",
+        url: "https://i1.sndcdn.com/artworks-000152209996-zt335k-t500x500.jpg",
+        color: "#101010",
+      },
+      {
+        id: "K4DyBUG242c",
+        title: "On & On",
+        artist: "Cartoon",
+        url: "https://i1.sndcdn.com/artworks-000174691373-1s4mj0-t500x500.jpg",
+        color: "#2e2833",
+      },
+      {
+        id: "AOeY-nDp7hI",
+        title: "Spectre",
+        artist: "Alan Walker",
+        url: "https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg",
+        color: "#526975",
+      },
+      {
+        id: "J2X5mJ3HDYE",
+        title: "DEAF KEV",
+        artist: "Invincible",
+        url: "https://i1.sndcdn.com/artworks-000196691418-31o3an-t500x500.jpg",
+        color: "#0e313f",
+      },
+      {
+        id: "3nQNiWdeH2Q",
+        title: "Janji",
+        artist: "Heroes Tonight",
+        url: "https://i1.sndcdn.com/artworks-000119783441-ycwh33-t500x500.jpg",
+        color: "#2d2541",
+      },
+      {
+        id: "Hn4sfC2PbhI",
+        title: "Sub Urban",
+        artist: "Cradles",
+        url:
+          "https://i.pinimg.com/originals/b2/5b/5f/b25b5f585ab8e5850f0ce0aa21efd70a.jpg",
+        color: "#526975",
+      },
+    ],
+  },
 ];
 let playlistIndex = db.length - 1;
 let playlists = document.querySelectorAll(".playlist1-list");
