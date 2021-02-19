@@ -30,7 +30,7 @@ body {
 }
 .player-bar {
   color: white;
-  height: 10vh;
+  height: 64px;
 
   display: flex;
 }
@@ -68,8 +68,8 @@ body {
   cursor: pointer;
 }
 .picture {
-  height: 10vh;
-  width: 10vh;
+  height: 64px;
+  width: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -424,7 +424,7 @@ iframe {
 }
 
 main {
-  height: 90vh;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
