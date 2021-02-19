@@ -7,6 +7,7 @@
 body {
   font-family: sans-serif;
   background-color: black;
+  overflow-x: hidden;
 }
 
 .control-bar {
@@ -94,7 +95,7 @@ body {
   font-size: 14px;
 }
 .control-bar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 
@@ -252,11 +253,10 @@ body {
 
 .collum1 {
   width: 100vw;
-  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 10px;
+  height: 400px;
 }
 
 .inner-collum1 {
@@ -268,7 +268,7 @@ body {
 
 .start-song {
   width: 50%;
-  height: 100%;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -280,7 +280,7 @@ body {
   width: 160px;
   height: 160px;
   border-radius: 5px;
-  background-image: url("https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg");
+  background-image: url("https://i1.sndcdn.com/artworks-000152209996-zt335k-t500x500.jpg");
   background-size: 100%;
   display: flex;
   justify-content: center;
@@ -298,30 +298,13 @@ body {
   color: rgba(360, 360, 360, 1);
 }
 .playlist1 {
-  background-color: gray;
   height: 100%;
   width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.song1 {
-  width: 80px;
-  height: 80px;
-  background-color: white;
-  border: black 1px solid;
-  display: inline-block;
-}
-.song2 {
-  width: 80px;
-  height: 80px;
-  background-color: white;
-  display: inline-block;
-}
-.song3 {
-  width: 80px;
-  height: 80px;
-  background-color: white;
-  border: black 1px solid;
-  display: inline-block;
-}
+
 .start-song-title {
   width: 160px;
   height: 40px;
@@ -334,4 +317,114 @@ body {
   padding-top: 5px;
   color: gray;
   font-size: 14px;
+}
+
+.playlist1-playing {
+  width: 100%;
+  height: min-content;
+}
+
+.now {
+  color: white;
+  font-size: 14px;
+}
+.next {
+  color: white;
+  font-size: 14px;
+}
+.list {
+  color: white;
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+.playing-info {
+  color: rgba(360, 360, 360, 0.5);
+}
+.next-info {
+  color: rgba(360, 360, 360, 0.5);
+}
+.list-info {
+  color: rgba(360, 360, 360, 0.5);
+}
+
+.playlist1-cont {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.playlist1-cont-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.play-playlist {
+  padding-right: 20px;
+  color: rgba(360, 360, 360, 0.5);
+}
+.play-playlist:hover {
+  color: rgba(360, 360, 360, 1);
+}
+
+.playlist1-next {
+  padding-top: 20px;
+}
+
+.playlist1-list {
+  overflow-y: scroll;
+  height: 300px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.collum1-title {
+  width: 100vw;
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+}
+
+iframe {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .inner-collum1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .collum1 {
+    height: min-content;
+  }
+  .start-song {
+    height: min-content;
+    padding: 50px 0px;
+    padding-top: 20px;
+  }
+}
+
+main {
+  height: 92vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

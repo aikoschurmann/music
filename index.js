@@ -28,7 +28,8 @@ let title2 = document.querySelector(".control-bar-title-exp");
 let artist2 = document.querySelector(".control-bar-artist-exp");
 let next2 = document.querySelector(".next2");
 let prev2 = document.querySelector(".prev2");
-let test = document.querySelector(".test");
+let startSong = document.querySelector(".playc");
+let playlistCover = document.querySelector(".start-song-inner");
 let db = [
   {
     id: "bM7SZ5SBzyY",
@@ -176,6 +177,7 @@ function displayUpdate() {
   artist2.innerHTML = db[songIndex].artist.replace(/&amp;/g, "&");
   innerpicture.style.backgroundImage = " url(" + db[songIndex].url + ")";
   innerpicture2.style.backgroundImage = " url(" + db[songIndex].url + ")";
+  playlistCover.style.backgroundImage = " url(" + db[songIndex].url + ")";
 
   controlBarExpanded.style.backgroundColor = db[songIndex].color;
 }
@@ -225,4 +227,4 @@ function start() {
   });
 }
 
-test.addEventListener("click", start);
+startSong.addEventListener("click", start);
