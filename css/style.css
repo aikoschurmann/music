@@ -299,10 +299,16 @@ html {
   cursor: pointer;
   color: rgba(360, 360, 360, 0.8);
 }
+.dark {
+  color: rgba(0, 0, 0, 0.8);
+}
 .playc:hover {
   font-size: 35px;
   cursor: pointer;
   color: rgba(360, 360, 360, 1);
+}
+.dark:hover {
+  color: rgba(0, 0, 0, 1);
 }
 .playlist1 {
   height: 100%;

@@ -28,7 +28,7 @@ let title2 = document.querySelector(".control-bar-title-exp");
 let artist2 = document.querySelector(".control-bar-artist-exp");
 let next2 = document.querySelector(".next2");
 let prev2 = document.querySelector(".prev2");
-let startSong = document.querySelector(".playc");
+let startSongButton = document.querySelector(".playc");
 let playlistCover = document.querySelector(".start-song-inner");
 let main = document.querySelector(".main");
 let index;
@@ -42,6 +42,7 @@ let db = [
         artist: "Alan Walker",
         url: "https://i1.sndcdn.com/artworks-000152209996-zt335k-t500x500.jpg",
         color: "#101010",
+        dark: true,
       },
       {
         id: "K4DyBUG242c",
@@ -89,8 +90,8 @@ let db = [
       },
       {
         id: "S19UcWdOA-I",
-        title: "Lost Sky",
-        artist: "Fearless",
+        title: "Fearless",
+        artist: "Lost Sky ",
         url: "https://i1.sndcdn.com/artworks-000499922982-6z95zq-t500x500.jpg",
         color: "#764754",
       },
@@ -320,6 +321,10 @@ function preload() {
     playlist.classList = "playlist1";
     playlistList.classList = "playlist-list";
     let playlistlist1 = document.createElement("div");
+
+    if (db[playlistIndex].songs[0].dark === true) {
+      playPlaylist.classList.add("dark");
+    }
 
     playlistlist1.classList = "playlist1-list";
 
