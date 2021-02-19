@@ -424,6 +424,10 @@ iframe {
   .playlist1-list {
     width: 70vw;
   }
+  .start-song-inner {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 main {
