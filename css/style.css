@@ -428,3 +428,8 @@ main {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.spacer {
+  height: 64px;
+  width: 100%;
+}
