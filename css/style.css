@@ -8,6 +8,11 @@ body {
   font-family: sans-serif;
   background-color: black;
   overflow-x: hidden;
+  width: 100vw;
+}
+
+html {
+  width: 100vw;
 }
 
 .control-bar {
@@ -405,6 +410,11 @@ body {
 iframe {
   display: none;
 }
+main {
+  height: calc(100vh - 66px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
 @media only screen and (max-width: 600px) {
   .inner-collum1 {
@@ -421,15 +431,12 @@ iframe {
     padding: 50px 0px;
     padding-top: 20px;
   }
-  main {
-    height: 100%;
+  .playlist1-list {
+    overflow-y: scroll;
+    height: 300px;
+    width: 70vw;
+    margin-bottom: 20px;
   }
-}
-
-main {
-  height: 92vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 .spacer {
