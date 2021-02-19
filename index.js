@@ -56,14 +56,14 @@ let db = [
     title: "DEAF KEV",
     artist: "Invincible",
     url: "https://i1.sndcdn.com/artworks-000196691418-31o3an-t500x500.jpg",
-    color: "#526975",
+    color: "#0e313f",
   },
   {
     id: "3nQNiWdeH2Q",
     title: "Janji",
     artist: "Heroes Tonight",
     url: "https://i1.sndcdn.com/artworks-000119783441-ycwh33-t500x500.jpg",
-    color: "#526975",
+    color: "#2d2541",
   },
   {
     id: "Hn4sfC2PbhI",

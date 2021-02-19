@@ -279,9 +279,23 @@ body {
 .start-song-inner {
   width: 160px;
   height: 160px;
-  border-radius: 10px;
-  background-image: url("https://i1.sndcdn.com/artworks-000174691373-1s4mj0-t500x500.jpg");
+  border-radius: 5px;
+  background-image: url("https://i1.sndcdn.com/artworks-000102464816-26g2sw-t500x500.jpg");
   background-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playc {
+  font-size: 35px;
+  cursor: pointer;
+  color: rgba(360, 360, 360, 0.8);
+}
+.playc:hover {
+  font-size: 35px;
+  cursor: pointer;
+  color: rgba(360, 360, 360, 1);
 }
 .playlist1 {
   background-color: gray;
@@ -307,4 +321,17 @@ body {
   background-color: white;
   border: black 1px solid;
   display: inline-block;
+}
+.start-song-title {
+  width: 160px;
+  height: 40px;
+}
+.start-song-title-inner {
+  padding-top: 10px;
+  font-size: 16px;
+}
+.start-song-artist-inner {
+  padding-top: 5px;
+  color: gray;
+  font-size: 14px;
 }
