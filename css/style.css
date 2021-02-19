@@ -157,6 +157,7 @@ html {
   flex-direction: column;
 
   height: 40vh;
+  padding-bottom: 80px;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
@@ -229,7 +230,7 @@ html {
 
 .control-bar-artist-exp {
   padding: 5px;
-  padding-bottom: 10vh;
+  padding-bottom: 6vh;
 }
 
 .control-bar-artist-exp {
