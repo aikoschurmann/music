@@ -412,6 +412,8 @@ iframe {
 }
 main {
   height: calc(100vh - 66px);
+
+  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 600px) {
