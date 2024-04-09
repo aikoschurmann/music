@@ -301,7 +301,6 @@ function preload() {
   let playlistAmount = db.length;
 
   for (i = 0; i < playlistAmount; i++) {
-    console.log("hey");
     let songAmount = db[i].songs.length;
     let main = document.querySelector(".main");
     index = i;
